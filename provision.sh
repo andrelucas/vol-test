@@ -9,6 +9,7 @@ tag=vol-test
 region=lon1
 image=23755729  # Docker on Ubuntu 16.04 64-bit
 size=2gb
+disable_firewall=0
 sshkey=b6:8a:f7:fe:8f:9c:b4:61:b3:f2:3c:d7:65:8a:70:1d
 name_template=${tag}-${size}-${region}
 
@@ -57,10 +58,12 @@ for droplet in $droplets; do
   sleep 5
 
   ssh-keyscan -H "$ip" >> ~/.ssh/known_hosts
-  echo "Disabling firewall"
-  until ssh "root@${ip}" "/usr/sbin/ufw disable"; do
-    sleep 2
-  done
+  if [ $disable_firewall -eq 1 ]; then
+    echo "Disabling firewall"
+    until ssh "root@${ip}" "/usr/sbin/ufw disable"; do
+      sleep 2
+    done
+  fi
 
   echo "Copying ~/.docker/config.json (auth needed for private beta)"
   ssh "root@${ip}" "mkdir /root/.docker 2>/dev/null"
