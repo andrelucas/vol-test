@@ -19,7 +19,7 @@ build_id="${branch_env}-${BUILD:-buildnotset}"
 tag="vol-test-${build_id}"
 region=lon1
 size=2gb
-name_template="${tag}-${size}-${region}"
+name_template="${tag}-${size}-${region}-"
 
 
 if [[ -f user_provision.sh ]] && [[  -z "$JENKINS_JOB" ]]; then
