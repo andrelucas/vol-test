@@ -123,7 +123,7 @@ function do_auth_init()
 function write_config()
 {
   echo "Clearing KV state"
-  [[ -n "$kv_addr" ]] && [[ -z "JENKINS_JOB" ]] && http delete "${kv_addr}/v1/kv/storageos?recurse"
+  [[ -n "$kv_addr" ]] && [[ -z "$JENKINS_JOB" ]] && http delete "${kv_addr}/v1/kv/storageos?recurse"
 
 cat << EOF > test.env
 export VOLDRIVER="${plugin_name}:${version}"
