@@ -6,7 +6,10 @@ declare -a ips
 plugin_name="${PLUGIN_NAME:-soegarots/plugin}"
 version="${VERSION:-latest}"
 cli_version="${CLI_VERSION:-0.0.11}"
-tag="vol-test${BUILD:+-$BUILD}"
+
+branch_env="${BRANCH_ENV:-branchnotset}"
+build_id="${branch_env}-${BUILD:-buildnotset}"
+tag="vol-test-${build_id}"
 region=lon1
 size=2gb
 name_template="${tag}-${size}-${region}"
