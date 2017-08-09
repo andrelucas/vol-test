@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set +e
+set -e
 declare -a ips
 
 plugin_name="${PLUGIN_NAME:-soegarots/plugin}"
