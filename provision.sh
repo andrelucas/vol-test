@@ -41,7 +41,7 @@ function provision_do_nodes()
 {
   droplets=$($doctl_auth compute droplet list --tag-name ${tag} --format ID --no-header)
 
-  if [[ -z "${droplets}" ]] || [[ -n "$JENKINS_JOB" ]] || [[ -n $BOOTSTRAP  ]]; then
+  if [[ -z "${droplets}" ]] || [[ -n "$JENKINS_JOB" ]] || [[ -n "$BOOTSTRAP"  ]]; then
     echo "Creating new droplets"
     $doctl_auth compute tag create $tag
     for name in ${name_template}01 ${name_template}02 ${name_template}03; do
