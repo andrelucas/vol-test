@@ -52,10 +52,12 @@ function download_storageos_cli()
       git co -b "${cli_branch}" "${cli_branch}"
     fi
     docker build -t "cli_build:${cli_branch}" .
+    popd
     # Need to run a container and copy the file from it. Can't copy from the image.
     build_id="$(docker run -d "cli_build:${cli_branch}" version)"
+    echo "Copy binary out of container"
     docker cp "${build_id}:/storageos" "${cli_binary}"
-    popd
+    chmod +x "${cli_binary}"
     rm -rf cli_build
   fi
 }
