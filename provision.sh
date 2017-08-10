@@ -123,7 +123,7 @@ function provision_do_nodes()
     ssh "root@${ip}" "export DEBIAN_FRONTEND=noninteractive && apt-get -qqy update && apt-get -qqy -o=Dpkg::Use-Pty=0 install systemd-coredump"
 
     echo "$droplet: Copying StorageOS CLI"
-    scp -p "$cli_binary" r"oot@${ip}:/usr/local/bin/storageos"
+    scp -p "$cli_binary" "root@${ip}:/usr/local/bin/storageos"
     ssh "root@${ip}" "export STORAGEOS_USERNAME=storageos >>/root/.bashrc"
     ssh "root@${ip}" "export STORAGEOS_PASSWORD=storageos >>/root/.bashrc"
 
